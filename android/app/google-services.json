@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "307726325230",
+    "project_id": "microclub-app",
+    "storage_bucket": "microclub-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307726325230:android:85865ac2c2c51f4ac4eaff",
+        "android_client_info": {
+          "package_name": "com.example.mc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307726325230-mg6abemdmge4q5upfol5h2srtk81328c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHUWms5DxYAfArGAZvKfqVql6wTMwwL_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307726325230-mg6abemdmge4q5upfol5h2srtk81328c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
