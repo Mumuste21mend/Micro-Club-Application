@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../screen/login.dart';
+import './signin.dart';
 
 const fond = const Color(0xff28224e);
 
@@ -25,7 +26,7 @@ class Home extends StatelessWidget{
                 width: MediaQuery.of(context).size.width*0.6,
                 child: RaisedButton(
                   onPressed: () {
-
+                      Navigator.push(context,MaterialPageRoute(builder: (context)=>signin()));
                   },
                   color: fond,
                   shape: RoundedRectangleBorder(

@@ -1,6 +1,83 @@
 import 'package:flutter/material.dart';
 
-class Homee extends StatelessWidget{
+class signin extends StatefulWidget{
+  _signinState createState() => _signinState();
+}
+
+class _signinState extends State<signin>{
+
+  String email;
+  String pswd;
+  String confPswd;
+  bool correctEmail = false;
+  bool correctPswd = false;
+  bool correctConfPswd = false;
+  TextEditingController emailController;
+  TextEditingController pswdController;
+  TextEditingController confPswdController;
+  RegExp mailVerification = RegExp(".+@.+\..+");
+
+  void initState(){
+    super.initState();
+
+    emailController = TextEditingController();
+    pswdController = TextEditingController();
+    confPswdController = TextEditingController();
+
+    emailController.addListener(() {
+      if(mailVerification.hasMatch(emailController.text))
+        {
+          setState(() {
+          correctEmail = true;
+          this.email = emailController.text;
+          });
+        }
+      else
+        {
+          setState(() {
+            correctEmail = false;
+        });
+        }
+    });
+
+    pswdController.addListener(() {
+      print("khraPsw");
+      if(pswdController.text.length >= 8)
+        {
+          setState(() {
+            this.pswd = pswdController.text;
+            correctPswd = false;
+          });
+        }
+      else
+        {
+          setState((){
+            correctPswd = false;
+          });
+        }
+    });
+
+    confPswdController.addListener(() {
+      if(correctPswd && (pswd == confPswdController.text))
+        {
+          setState((){
+            correctConfPswd = true;
+          });
+        }
+      else
+        {
+          setState((){
+            correctConfPswd = false;
+          });
+        }
+    });
+  }
+
+  void afficherText(String text1,String text2)
+  {
+    print('$text1\t$text2');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,6 +195,7 @@ class Homee extends StatelessWidget{
                       height: MediaQuery.of(context).size.height*0.05,
                       width: MediaQuery.of(context).size.width*0.65,
                       child: TextField(
+                          controller: this.emailController,
                           textAlign: TextAlign.center,
                           decoration: new InputDecoration(
                               border: new OutlineInputBorder(borderRadius: const BorderRadius.all(
@@ -141,7 +219,9 @@ class Homee extends StatelessWidget{
                       height: MediaQuery.of(context).size.height*0.05,
                       width: MediaQuery.of(context).size.width*0.65,
                       child: TextField(
+                        controller: this.pswdController,
                           textAlign: TextAlign.center,
+                          obscureText: true,
                           decoration: new InputDecoration(
                               border: new OutlineInputBorder(borderRadius: const BorderRadius.all(
                                 const Radius.circular(50.0),
@@ -164,7 +244,9 @@ class Homee extends StatelessWidget{
                   height: MediaQuery.of(context).size.height*0.05,
                   width: MediaQuery.of(context).size.width*0.65,
                   child: TextField(
+                      controller: this.confPswdController,
                       textAlign: TextAlign.center,
+                      obscureText: true,
                       decoration: new InputDecoration(
                           border: new OutlineInputBorder(borderRadius: const BorderRadius.all(
                             const Radius.circular(50.0),
@@ -183,6 +265,9 @@ class Homee extends StatelessWidget{
       )
       ),
       floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          afficherText(email,pswd);
+        },
         tooltip: 'Increment',
  ),
 
