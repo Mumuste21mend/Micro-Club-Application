@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class Auth {
-  final FirebaseAuth A =FirebaseAuth.instance;
+  final FirebaseAuth A = FirebaseAuth.instance;
 //conexion anonyme
   connexionA() async{
     try{

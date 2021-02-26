@@ -6,16 +6,24 @@ class signin extends StatefulWidget{
 
 class _signinState extends State<signin>{
 
+  final colorMain = Color(0xff28224e);
+
   String email;
   String pswd;
-  String confPswd;
+  String nom;
+  String prenom;
   bool correctEmail = false;
   bool correctPswd = false;
+  bool correctNom = false;
+  bool correctPrenom = false;
   bool correctConfPswd = false;
   TextEditingController emailController;
   TextEditingController pswdController;
   TextEditingController confPswdController;
+  TextEditingController nomController;
+  TextEditingController prenomController;
   RegExp mailVerification = RegExp(".+@.+\..+");
+  RegExp nomPrenomVerification = RegExp("[a-b|A-B|a-bA-B]");
 
   void initState(){
     super.initState();
@@ -23,6 +31,32 @@ class _signinState extends State<signin>{
     emailController = TextEditingController();
     pswdController = TextEditingController();
     confPswdController = TextEditingController();
+    nomController = TextEditingController();
+    prenomController = TextEditingController();
+
+    nomController.addListener((){
+      if(nomPrenomVerification.hasMatch(nomController.text))
+        {
+          nom = nomController.text;
+          correctNom = true;
+        }
+      else
+        {
+          correctNom = false;
+        }
+    });
+
+    prenomController.addListener((){
+      if(nomPrenomVerification.hasMatch(prenomController.text))
+        {
+          prenom = prenomController.text;
+          correctPrenom = true;
+        }
+      else
+        {
+          correctPrenom = false;
+        }
+    });
 
     emailController.addListener(() {
       if(mailVerification.hasMatch(emailController.text))
@@ -41,7 +75,6 @@ class _signinState extends State<signin>{
     });
 
     pswdController.addListener(() {
-      print("khraPsw");
       if(pswdController.text.length >= 8)
         {
           setState(() {
@@ -73,9 +106,15 @@ class _signinState extends State<signin>{
     });
   }
 
+  //Methodes pour boutons
   void afficherText(String text1,String text2)
   {
     print('$text1\t$text2');
+  }
+
+  void siginUser(String nom, String prenom, String mail, String pswd)
+  {
+
   }
 
   @override
@@ -86,7 +125,7 @@ class _signinState extends State<signin>{
           height:  MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color:Color(0xff28224e),
+            color:colorMain,
             // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40),bottomRight: Radius.circular(40)),
       ),
         child:  Column(
@@ -261,6 +300,18 @@ class _signinState extends State<signin>{
 
               ),
             )),
+            SizedBox(height:20),
+            Container(
+              height : MediaQuery.of(context).size.height*0.05,
+              width : MediaQuery.of(context).size.width*0.5,
+              child:FlatButton(
+                child: Text("Login",
+                style: TextStyle(fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color:colorMain)),
+
+              )
+            )
           ],)
       )
       ),
