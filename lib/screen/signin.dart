@@ -305,7 +305,7 @@ class _signinState extends State<signin>{
               height : MediaQuery.of(context).size.height*0.05,
               width : MediaQuery.of(context).size.width*0.5,
               child:FlatButton(
-                child: Text("Login",
+                child: Text("Signin",
                 style: TextStyle(fontSize: 20,
                     fontWeight: FontWeight.w700,
                     color:colorMain)),
